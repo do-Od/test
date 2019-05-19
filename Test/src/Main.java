@@ -4,36 +4,33 @@ import java.util.Stack;
 public class Main {
 
 	public static void main(String[] args) {
-		Stack<Integer>st=new Stack<>();	//integer타입으로 stack생성
-		Scanner sc = new Scanner(System.in);	//스캐너
+		Stack<Character> st=new Stack();
+		Scanner sc= new Scanner(System.in);
+		int result=0;	//잘린 쇠막대기가 몇개인지
+		String input=sc.next();	//"((()))()(()()"쇠막대기 입력받을 곳
 		
-		int num=sc.nextInt();	//입력받을 명령어 갯수
-		
-		if(num >= 10000 || num < 1)
+		for (int i = 0; i < input.length();i++)
 		{
-			System.out.println("주어진 조건에 맞는 명령어 갯수를 입력하세요(1<num<10000)");
-			num=sc.nextInt();
-		}else
-		{
-			for (int i = 0; i < num; i++) {
-				String com=sc.next();	//입력받을 명령어
-				if(com.equals("push"))
+			if(input.charAt(i)=='(')
+			{
+				st.push(input.charAt(i));
+			}else if(input.charAt(i)==')')
+			{
+				st.pop();
+				System.out.println(i+"스택 사이즈 "+st.size());
+			
+				if(input.charAt(i-1)=='(')
 				{
-					st.push(sc.nextInt());
-				}else if(com.equals("pop"))
+					result+=st.size();
+					System.out.println("누적 스택 사이즈 "+st.size());
+				}else
 				{
-					System.out.println(st.isEmpty()?-1:st.pop());
-				}else if(com.equals("size"))
-				{
-					System.out.println(st.size());
-				}else if(com.equals("empty"))
-				{
-					System.out.println(st.isEmpty()?1:0);
-				}else if(com.equals("top"))
-				{
-					System.out.println(st.isEmpty()?-1:st.peek());
+					result++;
 				}
 			}
 		}
+		
+		System.out.println(result);
+		
 	}
 }
