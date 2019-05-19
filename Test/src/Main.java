@@ -17,12 +17,12 @@ public class Main {
 			}else if(input.charAt(i)==')')
 			{
 				st.pop();
-				System.out.println(i+"스택 사이즈 "+st.size());
+				//System.out.println(i+"스택 사이즈 "+st.size());
 			
 				if(input.charAt(i-1)=='(')
 				{
 					result+=st.size();
-					System.out.println("누적 스택 사이즈 "+st.size());
+					//System.out.println("누적 스택 사이즈 "+st.size());
 				}else
 				{
 					result++;
